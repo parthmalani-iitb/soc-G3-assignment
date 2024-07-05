@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Data Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Stock Data Analysis</h1>
+        <form method="POST">
+            <label for="ticker">Ticker:</label>
+            <input type="text" id="ticker" name="ticker" required><br>
+
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" required><br>
+
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date" required><br>
+
+            <input type="submit" value="Submit">
+        </form>
+        {% if statistics %}
+        <h2>Dataset Statistics</h2>
+        <table>
+            <tr><th>Metric</th><th>Value</th></tr>
+            <tr><td>Data Size</td><td>{{ statistics['Data Size'] }}</td></tr>
+            <tr><td>Missing Values</td><td>{{ statistics['Missing Values'] }}</td></tr>
+            <tr><td>Mean</td><td>{{ statistics['Mean'] }}</td></tr>
+            <tr><td>Median</td><td>{{ statistics['Median'] }}</td></tr>
+            <tr><td>Standard Deviation</td><td>{{ statistics['Standard Deviation'] }}</td></tr>
+        </table>
+        <h2>Cumulative Return Plot</h2>
+        <img src="data:image/png;base64,{{ plot_url }}" alt="Cumulative Return Plot">
+        {% endif %}
+    </div>
+</body>
+</html>
