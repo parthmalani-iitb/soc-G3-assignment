@@ -26,11 +26,11 @@ class DataPreprocessing:
 
     def handle_missing_values(self, method='ffill'):
         if method == 'ffill':
-            self.data.fillna(method='ffill', inplace=True)
+            self.data = self.data.ffill()
         elif method == 'bfill':
-            self.data.fillna(method='bfill', inplace=True)
+            self.data = self.data.bfill()
         elif method == 'drop':
-            self.data.dropna(inplace=True)
+            self.data = self.data.dropna()
         else:
             raise ValueError("Method not recognized. Use 'ffill', 'bfill', or 'drop'.")
 
